@@ -1,0 +1,39 @@
+﻿@page "/articles/{slug}"
+@using ViewModels
+@inject IArticles articles
+@inject IJSRuntime JSRuntime
+
+<article>
+	<header>
+		<h2>@Model.Title</h2>
+	</header>
+	<section>
+		<p>
+			<time datetime="@Model.DatePosted.ToString("yyyy-MM-dd")">@Model.DatePosted.ToLongDateString()</time>
+			<Markdown Content="@Model.Body" />
+		</p>
+	</section>
+	<footer>
+		<img src="https://www.gravatar.com/avatar/531b97f13d3d9ce794177c746e913959?d=404"
+			 alt="Author image"
+			 nopin="nopin" />
+	</footer>
+</article>
+
+@code {
+	[Parameter]
+	public string Slug { get; set; } = string.Empty;
+	public ArticleViewModel Model { get; set; } = new ArticleViewModel();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var a = await articles.Get(this.Slug);
+		this.Model = a.Match(nothing: new ArticleViewModel(), just: a => new ArticleViewModel(a));
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+			await JSRuntime.InvokeVoidAsync("hljs.initHighlightingOnLoad");
+	}
+}

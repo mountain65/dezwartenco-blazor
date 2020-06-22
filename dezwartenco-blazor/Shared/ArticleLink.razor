@@ -1,0 +1,40 @@
+﻿<div>
+	<article style="cursor:pointer" @onclick=@NavigateToLink>
+		<header>
+			<NavLink href="@GetLink()">
+				<h2>@Title</h2>
+			</NavLink>
+		</header>
+		<section>
+			<p>
+				@Excerpt&nbsp;&raquo;
+			</p>
+		</section>
+		<footer>
+			<img src="https://www.gravatar.com/avatar/531b97f13d3d9ce794177c746e913959?d=404"
+				 alt="Author image"
+				 nopin="nopin" />
+			<time datetime="2014-06-08">@DatePosted.ToLongDateString()</time>
+		</footer>
+	</article>
+</div>
+@code {
+	[Parameter]
+	public string Title { get; set; } = "No Title";
+	[Parameter]
+	public string Link { get; set; } = "No Link";
+	[Parameter]
+	public DateTime DatePosted { get; set; } = DateTime.UtcNow;
+	[Parameter]
+	public string Excerpt { get; set; } = "No Excerpt";
+
+	string GetLink()
+	{
+		return $"/articles/{this.Link}";
+	}
+
+	void NavigateToLink(MouseEventArgs e)
+	{
+
+	}
+}
