@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Article
+    public data Article
     {
         public Article(string slug, string title, string body, DateTime datePosted)
         {
