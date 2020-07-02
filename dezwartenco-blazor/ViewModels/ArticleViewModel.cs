@@ -18,7 +18,6 @@ namespace DeZwartEnCoBlazor.ViewModels
 
         public ArticleViewModel(Article article)
         {
-            this.Title = article.Title;
             this.Body = article.Body;
             this.DatePosted = article.DatePosted;
         }

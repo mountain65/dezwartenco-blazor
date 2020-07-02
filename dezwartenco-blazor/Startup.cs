@@ -1,5 +1,3 @@
-using ApplicationServices.TableStorage;
-
 using DomainServices;
 
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +24,7 @@ namespace DeZwartEnCoBlazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             
-            services.AddScoped<IArticles>(sp => new ArticleRepository(this.Configuration["StorageConnectionString"]));
+            services.AddScoped<IArticles>(sp => new ApplicationServices.BlobStorage.ArticleRepository(this.Configuration["StorageConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

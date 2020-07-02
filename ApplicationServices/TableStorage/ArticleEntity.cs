@@ -1,7 +1,9 @@
-﻿using Microsoft.Azure.Cosmos.Table;
+﻿using Domain.Entities;
+
+using Microsoft.Azure.Cosmos.Table;
 using System;
 
-namespace Domain.Entities
+namespace ApplicationServices.TableStorage
 {
     public class ArticleEntity:TableEntity
     {
@@ -11,7 +13,7 @@ namespace Domain.Entities
 
         public Article ToEntity()
         {
-            return new Article(this.RowKey, this.Title, this.Body, this.DatePosted);
+            return new Article(this.RowKey, this.Body, this.DatePosted);
         }
     }
 }

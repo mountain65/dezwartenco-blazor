@@ -16,7 +16,7 @@ namespace Domain
             return nothing;
         }
     }
-    public class Just<T> : IMaybe<T>
+    public class Just<T> : IMaybe<T> where T:class
     {
         private readonly T value;
 
@@ -47,7 +47,7 @@ namespace Domain
         }
         public static IMaybe<TResult> Select<T, TResult>(
          this IMaybe<T> source,
-         Func<T, TResult> selector)
+         Func<T, TResult> selector) where TResult:class
         {
             return source.Match<IMaybe<TResult>>(
                 nothing: new Nothing<TResult>(),

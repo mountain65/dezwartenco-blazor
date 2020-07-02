@@ -1,10 +1,7 @@
 ﻿using Domain;
 using Domain.Entities;
-
 using DomainServices;
-
 using Microsoft.Azure.Cosmos.Table;
-
 using System.Threading.Tasks;
 
 namespace ApplicationServices.TableStorage
